@@ -1,0 +1,256 @@
+:root {
+    --primary: hsl(202, 71%, 39%);
+    --primary-light: #eb5651;
+    --accent: #2775DB;
+    --green: #65DB6B;
+    --green-light: #9FFFA5;
+    --gold: #DBC281;
+    --gold-light: #F0E2B0;
+    --light: #F5F5F7;
+}
+
+body {
+    margin:0;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--light);
+    display:flex;
+    flex-direction:column;
+    min-height:100vh;
+}
+
+header {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background: linear-gradient(90deg, var(--primary), var(--primary));
+    color:white;
+    height:100px;
+}
+
+nav {
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent));
+    display:flex;
+    justify-content:space-around;
+    padding:12px 0;
+    z-index:1000;
+}
+
+nav button {
+    background:none;
+    border:none;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+main {
+    flex:1;
+    padding:20px;
+    max-width:900px;
+    margin:auto;
+    padding-bottom:70px;
+}
+
+.card {
+    background:white;
+    border-radius:12px;
+    padding:20px;
+    margin-bottom:20px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    display:none;
+}
+
+.faltas-calendario {
+    display:grid;
+    grid-template-columns:repeat(7, 1fr);
+    gap:5px;
+}
+
+.dia {
+    background-color: var(--gold-light);
+    padding:10px;
+    border-radius:5px;
+    text-align:center;
+    cursor:pointer;
+    transition: background 0.3s;
+}
+
+.dia:hover { background-color: var(--gold); }
+
+.faltou {
+    background-color: var(--primary-light);
+    color:white;
+    font-weight:bold;
+    animation: piscar 1s infinite;
+}
+
+@keyframes piscar {
+    0%,100%{ background-color:#ff4d4d; }
+    50%{ background-color:#ff9999; }
+}
+
+.detalhesaula {
+    margin-top:15px;
+    padding:12px;
+    border-radius:6px;
+    background-color: var(--green-light);
+    border-left:5px solid var(--green);
+    max-height: 100px;
+    max-width: 270px;
+    overflow-y: auto;
+    display: none;
+}
+
+ul{list-style:none;padding:0;}
+ul li{padding:8px 0;border-bottom:1px solid var(--light);}
+
+/* Avisos */
+#filtros{margin-bottom:15px;display:flex;gap:10px;flex-wrap:wrap;}
+#filtros button{padding:6px 12px;border:none;border-radius:6px;background:#ddd;cursor:pointer;}
+#filtros button.ativo{background: var(--accent); color:white;}
+
+.aviso {
+    display:flex;
+    align-items:center;
+    padding:12px;
+    margin-bottom:10px;
+    border-radius:8px;
+    color:white;
+    position:relative;
+}
+
+.aviso::before {
+    content: attr(data-icone);
+    position:absolute;
+    left:0;
+    top:0;
+    bottom:0;
+    width:40px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:1.4rem;
+    background: rgba(0,0,0,0.2);
+}
+
+.aviso-texto{margin-left:50px; flex:1;}
+.aviso-normal{background:#2775DB;}
+.aviso-importante{background:#FF9800;}
+.aviso-urgente{background:#E53935;}
+
+.btn-lido {
+    background: rgba(255,255,255,0.2);
+    border:none;
+    color:white;
+    padding:5px 10px;
+    border-radius:6px;
+    cursor:pointer;
+}
+.btn-lido:hover{background: rgba(255,255,255,0.4);}
+.fadeOut {opacity:0; transform:translateX(20px); transition:all 0.4s;}
+
+input, textarea, select, button#adicionar-aviso{
+    width:100%; padding:8px; margin-top:5px;margin-bottom:10px;border-radius:6px;border:1px solid #ccc;
+}
+button#adicionar-aviso{background:var(--accent);color:white;border:none;cursor:pointer;}
+button#adicionar-aviso:hover{background:#1854a5;}
+
+/* ... código anterior ... */
+
+.detalhes-aula {
+    margin-top: 15px;
+    padding: 12px;
+    border-radius: 6px;
+    background-color: var(--gold-light); /* Cor diferente para destacar */
+    border-left: 5px solid var(--gold);
+    display: none; /* Começa escondido */
+    min-width: 270px;
+    max-height: 100px;
+    max-width: 270px;
+    overflow-y: auto;
+}
+
+/* Estilo para os itens da lista de horários */
+#lista-horarios li {
+    padding: 10px;
+    background-color: #f0f0f0;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+    min-width: 280px;
+}
+
+#lista-horarios li:hover {
+    background-color: #ddd;
+}
+
+/* Estilo para a lista de matérias */
+#lista-materias {
+    list-style: none;
+    padding: 0;
+}
+
+#lista-materias li {
+    padding: 12px 15px;
+    background-color: #f0f0f0;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    display: flex;
+    justify-content: space-between; /* Alinha a matéria e a nota em lados opostos */
+    align-items: center; /* Centraliza verticalmente */
+      min-width: 280px;
+}
+
+#lista-materias li:hover {
+    background-color: #e0e0e0;
+    transform: translateY(-2px); /* Adiciona um pequeno efeito ao passar o mouse */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+}
+
+/* Estilo para a nota do semestre */
+#lista-materias .nota-semestre {
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+/* Cores dinâmicas para a nota do semestre */
+.nota-verde {
+ 
+    color: var(--green);
+}
+
+.nota-amarela {
+
+    color: var(--green);
+}
+
+.nota-vermelha {
+
+    color: #eb5651;
+}
+
+/* Estilo para a div de detalhes da matéria */
+#detalhes-materia {
+    margin-top: 15px;
+    padding: 20px;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    display: none; /* Começa escondido */
+}
+
+#detalhes-materia hr {
+    border: 0;
+    height: 1px;
+    background-color: #ccc;
+    margin: 10px 0;
+}
